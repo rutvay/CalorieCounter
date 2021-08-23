@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign up</title>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Calorie Counter</h1>
+	<img class="wave" src="../../../assets/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="../../../assets/diet.svg">
+		</div>
+		<div class="login-content">
+			<form (ngSubmit)="onSubmitform()" name="signupform">
+    
+				<img src="../../assets/food.svg">
+			
+                <div class="input-div fname">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="text" class="input" name="fname" required [(ngModel)]="fname" placeholder="First Name" #Fname="ngModel">
+           		   </div>
+           		</div>
+
+                <div class="input-div lname">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="text" class="input" name="lname" required [(ngModel)]="lname" placeholder="Last Name" #Lname="ngModel">
+           		   </div>
+           		</div>
+
+                <div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="email" class="input" name="email" required [(ngModel)]="Email" placeholder="Email" email #email="ngModel">
+           		   </div>
+           		</div>
+
+           		<div class="input-div pass">
+           		   <div class="i">
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input type="password" class="input" name="password" required [(ngModel)]="password" placeholder="password" #pass="ngModel"> 
+            	   </div>
+            	</div>
+
+				
+                <div *ngIf="email.invalid && (email.dirty && email.touched)" style="color: red;" class="alert">
+                    <div *ngIf="email.errors?.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors?.email" > 
+                        Email not valid.
+                    </div>
+                </div>
+				<div style="color: red;">
+					<div *ngIf="Fname.errors?.required && (Fname.dirty && Fname.touched)">
+						First Name is required.
+					</div>
+
+					<div *ngIf="Lname.errors?.required && (Lname.dirty && Lname.touched)">
+						Last Name is required.
+					</div>
+
+					<div *ngIf="pass.errors?.required && (pass.dirty && pass.touched)">
+						Password is required.
+					</div>
+					<div>
+						{{ error }}
+					</div>
+				</div>
+                
+
+                <p>Have an account?</p>
+                <a routerLink="">Login</a>
+            	<input type="submit" class="btn" value="Signup" [disabled]="email.errors?.email || Fname.errors?.required || Lname.errors?.required || pass.errors?.required">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log in</title>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <meta name="google-signin-client_id" content="562809280846-e41925ag5hs07msio0ssvlruk7v9ct3s.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Calorie Tracker</h1>
+	<img class="wave" src="/assets/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="assets/food.svg">
+		</div>
+		<div class="login-content">
+
+			<form (ngSubmit)="onLogin()" name="loginform">
+                
+				<img src="assets/diet.svg">
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="email" class="input" name="email" placeholder="Email" [(ngModel)]="Email" email #email="ngModel" required >
+           		   </div> 
+           		</div>
+
+
+           		<div class="input-div pass">
+           		   <div class="i">
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input type="password" class="input" name="password" placeholder="Password" [(ngModel)]="password">
+            	   </div>
+            	</div>
+
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" style="color: red;">
+                    <div *ngIf="email.errors?.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors?.email" > 
+                        Email not valid.
+                    </div>
+                </div>
+                <div *ngIf="passwordcheck" style="color: red;">
+                    Password is required.
+                </div>
+				
+                <div *ngIf="userauth" style="color: red;">
+                    User not found
+                </div>
+
+                <div *ngIf="passauth" style="color: red;">
+                    Password is incorrect
+                </div>
+
+                <p>Dont have an account?</p>
+                <a routerLink="/auth/signup">Sign up</a>
+            	<input type="submit"  class="btn" value="Login" [disabled]="email.errors?.email" >
+            </form>
+        </div>
+    </div>
+</body>
+</html>
